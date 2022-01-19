@@ -21,37 +21,43 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/arthurgailes/traveltimeSF/workflows/R-CMD-check/badge.svg)](https://github.com/arthurgailes/traveltimeSF/actions)
 <!-- badges: end -->
 
-The goal of traveltimeSF is to ...
+The goal of traveltimeSF is to provide simple wrappers for converting data from the TravelTime SDK for R to sf. Currently only works with isochrones
 
 ## Installation
 
-You can install the released version of traveltimeSF from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("traveltimeSF")
+You can install the development version from GitHub with:
+```r
+# install.packages("devtools")
+devtools::install_github("arthurgailes/traveltimeSF")
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+Adapted from the [TravelTime Github](https://github.com/traveltime-dev/traveltime-sdk-r):
 
 ```{r example}
+library(traveltimeR)
+
+#store your credentials in an environment variable
+# Sys.setenv(TRAVELTIME_ID = "YOUR_API_ID")
+# Sys.setenv(TRAVELTIME_KEY = "YOUR_API_KEY")
+
 library(traveltimeSF)
-## basic example code
+departure_search <-
+  make_search(id = "public transport from Trafalgar Square",
+              departure_time = strftime(as.POSIXlt(Sys.time(), "UTC"), "%Y-%m-%dT%H:%M:%SZ"),
+              travel_time = 900,
+              coords = list(lat = 51.507609, lng = -0.128315),
+              transportation = list(type = "public_transport"),
+              properties = list('is_only_walking'))
+
+result <- time_map(departure_searches = departure_search)
+
+shp <- time_map_to_sf(result)
+shp
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
+```{r}
+plot(shp$geometry)
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/master/examples>.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
