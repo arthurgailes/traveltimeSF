@@ -13,3 +13,13 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Imports: 
+    traveltimeR (>= 0.0.0.9000),
+    sf,
+    usethis (>= 2.0.1),
+    dplyr
+Remotes: 
+    traveltime-dev/traveltime-sdk-r,
+    r-lib/usethis
+Depends: 
+    R (>= 2.10)
