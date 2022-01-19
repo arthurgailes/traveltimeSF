@@ -38,9 +38,10 @@ time_map_to_sf <- function(time_map_data, return_list = FALSE){
   }
 
   if(return_list == FALSE){
-    poly_list <- dplyr::bind_rows()
+    poly_list <- dplyr::bind_rows(poly_list)
   }
 
+  return(poly_list)
 }
 
 #' extract the spatial data from the parsed results of a `time_map` call
