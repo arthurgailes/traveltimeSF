@@ -4,11 +4,9 @@
 \alias{time_map_sf}
 \title{convenience wrapper that combines time_map and time_map_to_sf}
 \usage{
-time_map_sf(time_map_data, return_list = FALSE, ...)
+time_map_sf(return_list = FALSE, ...)
 }
 \arguments{
-\item{time_map_data}{result from a call to \code{traveltimeR::time_map}}
-
 \item{return_list}{if FALSE (default), returns all results as a single
 \code{sf} dataframe.}
 
