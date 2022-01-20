@@ -4,7 +4,10 @@
 \alias{extract_spatial_data}
 \title{extract the spatial data from the parsed results of a \code{time_map} call}
 \usage{
-extract_spatial_data(item)
+extract_spatial_data(result)
+}
+\arguments{
+\item{result}{a single row from list of results}
 }
 \description{
 extract the spatial data from the parsed results of a \code{time_map} call

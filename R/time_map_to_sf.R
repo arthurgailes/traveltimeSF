@@ -45,8 +45,10 @@ time_map_to_sf <- function(time_map_data, return_list = FALSE){
 }
 
 #' extract the spatial data from the parsed results of a `time_map` call
-extract_spatial_data <- function(item) {
-  shapes <- item$shapes
+#'
+#' @param  result a single row from list of results
+extract_spatial_data <- function(result) {
+  shapes <- result$shapes
   flat <- lapply(c(1:length(shapes)),
     function(x) dplyr::bind_rows(shapes[[x]]$shell))
 
